@@ -1,0 +1,12 @@
+.Header-box {
+
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+}
+
+.Categories-box {
+    margin-left: 8%;
+    margin-right: 8%;
+    color: white;
+}

@@ -1,15 +1,28 @@
-import logo from './logo.svg'
+import React, {useState, useEffect} from 'react'
+import routes from './route/routes'
+import { Routes } from 'react-router-dom'
+import Layout from './components/layout/Layout'
+
+
 import './App.css'
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <div>Tech Enersen's Contents</div>
-        <div>Coming Soon!</div>
-      </header>
-    </div>
+    <React.Fragment>
+      <Layout/>
+      {routes.map((route,index)=>{
+        return(
+          <Routes key={index}>
+             <route.route
+              path={route.path}
+              exact={route.exact}
+              element={<route.component/>}
+              />
+          </Routes>
+        )
+      })
+    }
+    </React.Fragment>
   )
 }
-
 export default App
