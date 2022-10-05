@@ -11,7 +11,7 @@ import Contact from '../components/contact/Contact'
 const routes = [
     {
         path:'/',
-        name: 'main',
+        name: '/',
         exact: true, 
         component: Main,
         route: Route

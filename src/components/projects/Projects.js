@@ -6,6 +6,8 @@ function Projects (){
     useEffect(()=>{
         GetFetchQuotes({
             uri: `${process.env.REACT_APP_SERVER_IP}/uploads/Thumbnail_1.png`,
+            // uri: `${process.env.REACT_APP_LOCAL_SERVER_IP}/uploads/Thumbnail_1.png`,
+
             msg: 'GET projects thumbnail'
         }).then((response)=>{
             console.log(response)
