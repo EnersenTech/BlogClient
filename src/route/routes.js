@@ -1,42 +1,65 @@
-import { Route} from 'react-router-dom'
+import { useRoutes } from "react-router-dom";
 
+
+// Blog Layout
+import Layout from '../components/layout/Layout'
 
 // Blog Pages
-import Main from '../components/main/Main'
+import Home from '../components/home/Home'
 import News from '../components/news/News'
 import Projects from '../components/projects/Projects'
 import Contact from '../components/contact/Contact'
+import NotFound from '../components/notFound/NotFound'
+
+// Blog Detail Pages
+import Project from '../components/projects/project/Project'
 
 
-const routes = [
+function withLayout(page, title){
+    return <Layout title={title} page={page}>{page}</Layout>
+}
+
+export default function Router() {
+    let routes = useRoutes([
+    {
+        path: '*',
+        name: 'notFound',
+        exact: true,
+        element:withLayout(<NotFound/>, 'not found')
+    },
     {
         path:'/',
         name: '/',
         exact: true, 
-        component: Main,
-        route: Route
+        element: withLayout(<Home/>, 'Home'),
     },
     {
         path:'/news',
         name: 'news',
         exact: true, 
-        component: News,
-        route: Route
+        element:  withLayout(<News/>, 'news'),
     },
     {
         path:'/projects',
         name: 'projects',
-        exact: true, 
-        component: Projects,
-        route: Route
+        children: [
+            {
+                index : true, 
+                element: withLayout(<Projects/>, 'projects')
+            },
+            {
+                path:":id",
+                element: withLayout(<Project/>, 'project')
+            }
+        ],
     },
     {
         path:'/contact',
         name: 'contact',
         exact: true, 
-        component: Contact,
-        route: Route
-    }
-]
+        element:withLayout(<Contact/>, 'contact'),
+    },
+])
+    return routes 
 
-export default routes
+}

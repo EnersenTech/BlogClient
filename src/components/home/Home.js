@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Main (){
+function Home (){
     return (
     <div>
         Enersen Blog is coming soon!
@@ -8,4 +8,4 @@ function Main (){
     )
 }
 
-export default Main
+export default Home

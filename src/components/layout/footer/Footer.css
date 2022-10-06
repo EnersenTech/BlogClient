@@ -1,0 +1,48 @@
+.footer--size {
+    width: calc(36vw + var(--doc-sidebar-width) + 28px);
+}
+
+@media screen and (max-width: 1280px){
+    .footer.container {
+        align-items: flex-start;
+        flex-direction : column;
+        gap : 16px;
+    }
+}
+
+.footer>.container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.footer__links {
+    display: flex;
+    gap: 24px;
+    line-height: 1;
+    margin: 0;
+    order: 2;
+}
+
+.footer__link-item {
+    color: var(--ifm-footer-link-color);
+    line-height: 2;
+}
+
+.footer__bottom {
+    opacity: .5;
+    order: 1;
+    text-align: left!important;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.footer {
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+
