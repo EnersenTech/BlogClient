@@ -31,7 +31,7 @@ export default function Router() {
         path:'/',
         name: '/',
         exact: true, 
-        element: withLayout(<Home/>, 'Home'),
+        element: withLayout(<Home/>, 'main'),
     },
     {
         path:'/news',

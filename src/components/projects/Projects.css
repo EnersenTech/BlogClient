@@ -22,7 +22,7 @@ opacity: .5;
 
 }
 
-.contents_odxa h2 {
+.Blog-linker {
     font-family: Stanley,serif;
     font-weight: 400;
     max-width: 800px;
@@ -30,7 +30,6 @@ opacity: .5;
     margin: 40px 2rem 0.2rem 0;
     display: flex;
     align-items: center;
-   
 }
 
 
@@ -41,10 +40,12 @@ time {
     display: block;
     font-size: .8rem;
     margin: 16px 0 24px;
-}
-time {
     font-family: America;
+
 }
+
+
+
 
 .Blog-title {
     padding-left: 20px;
