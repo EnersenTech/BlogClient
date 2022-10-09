@@ -3,6 +3,14 @@ import {useParams } from 'react-router-dom';
 import './Project.css'
 import {GetFetchQuotes} from '../../../api/fetch'
 import ReactMarkdown from 'react-markdown'
+import styled from '@emotion/styled'
+
+
+
+function InlineCodeBlock({node, ...props}){
+    return <img style={{width: '500px', heigth: '350px'}}{...props} className={node.properties.alt} alt=""/>
+}
+
 
 
 function Project (){
@@ -55,7 +63,10 @@ useEffect(()=>{
                        )})}
                 </div>
                 <div>
-                <ReactMarkdown>{metaText}</ReactMarkdown>
+                <ReactMarkdown 
+                  components={{img: InlineCodeBlock}}>    
+                    {metaText}
+                </ReactMarkdown>
                 </div>
             </section>
         </div>
