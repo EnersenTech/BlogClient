@@ -24,6 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: echo "REACT_APP_SERVER_IP=${{ secretes.REACT_APP_SERVER_IP }}" >> .env
     - run: npm ci
     - run: npm i
     - run: npm run build
