@@ -3,7 +3,6 @@ import {useParams } from 'react-router-dom';
 import './Project.css'
 import {GetFetchQuotes} from '../../../api/fetch'
 import ReactMarkdown from 'react-markdown'
-import styled from '@emotion/styled'
 
 
 
