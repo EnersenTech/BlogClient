@@ -5,7 +5,15 @@ import {Route, useLocation, useParams, Link} from 'react-router-dom'
 
 
 function Projects (){    
+    const [posts, setPosts] = useState([])
+    
     useEffect(()=>{
+        GetFetchQuotes({
+            uri: `${process.env.REACT_APP_SERVER_IP}/post/all`,
+            msg: 'Blog post all GET'
+        }).then((response) => {
+             setPosts(response.data)
+        })
     },[])
     
     return (
@@ -14,6 +22,20 @@ function Projects (){
             <h1 id="recent-blogs">
                 Recent Blogs
             </h1>
+            {posts.map((el,idx)=>{
+                return (
+                    <React.Fragment key={el.ID}>
+                    <h2>
+                        <Link to={{pathname: `${el.ID}`, props: {title: el.TITLE , imgPath:`${process.env.REACT_APP_SERVER_IP}/file/${el.THUMBNAIL}`, text: el.CONTENT_TEXT}}} className="Blog-linker">
+                        <img className='Thumbnail-size' src={`${process.env.REACT_APP_SERVER_IP}/file/${el.THUMBNAIL}`} />
+                        <span className='Blog-title'>{el.TITLE}</span>
+                    </Link>
+                    </h2>
+                    <time>Oct 6, 2022 · 5 min read</time>
+                    </React.Fragment>
+                )
+            })}
+
             <h2><Link to={{pathname: `1`, props: {title:'TM4C123G Launchpad LED Blinking' , imgPath:`${process.env.REACT_APP_SERVER_IP}/uploads/Thumbnail_1.png`, text: 'sample text'}}} className="Blog-linker">
                         <img className='Thumbnail-size' src={`${process.env.REACT_APP_SERVER_IP}/uploads/img/Thumbnail_1.png`} />
                         <span className='Blog-title'>TM4C123G Launchpad LED Blinking</span>

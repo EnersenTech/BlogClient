@@ -2,33 +2,22 @@ import React ,{useEffect, useState} from 'react'
 import {useParams } from 'react-router-dom';
 import './Project.css'
 import {GetFetchQuotes} from '../../../api/fetch'
-import ReactMarkdown from 'react-markdown'
-
-
-
-function InlineCodeBlock({node, ...props}){
-    return <img style={{width: '500px', heigth: '350px'}}{...props} className={node.properties.alt} alt=""/>
-}
-
 
 
 function Project (){
     const {id} = useParams()
 
     const [metaData, setMetaData] = useState([])
-    const [metaText, setMetaText] = useState('')
 
 
 useEffect(()=>{
     GetFetchQuotes(
         {
-            uri: `${process.env.REACT_APP_SERVER_IP}/project/${id}`,
+            uri: `${process.env.REACT_APP_SERVER_IP}/post/${id}`,
             msg: 'Blog Content GET'
         }
     ).then(response => {
-        const {data, text} = response.data
-        setMetaData(data)
-        setMetaText(text)
+        setMetaData(prev => [...prev, response.data])
     })
 },[])
 
@@ -38,7 +27,9 @@ useEffect(()=>{
         <div className='rows'>
             <section className='col-sm-12'>
                 <div className='region region-header'>
-                    {metaData.map((el,idx) => {return (
+                    {metaData.map((el,idx) => {
+                        console.log(el)
+                        return (
                         <React.Fragment key={idx}>
                             <ol className='breadcrumb'>
                                 <li>
@@ -46,27 +37,24 @@ useEffect(()=>{
                                 </li>
                                 
                                 <li>
-                                    <a href='/microcontroller-projects'>{el.category} Based Projects</a>
+                                    <a href='/microcontroller-projects'>{el.CATEGORY_NAME} Based Projects</a>
                                 </li>
                                 <li className='active'>
-                                    {el.title}
+                                    {el.TITLE}
                                 </li>
                             </ol>
                              <h1 className='page-header'> 
                                 <span>
-                                    {el.title}
+                                    {el.TITLE}
                                 </span>
                              </h1>
-                            <img className='Thumbnail-size' src={`${process.env.REACT_APP_SERVER_IP}${el.img_path}`} />
+                            <img className='Thumbnail-size' src={`${process.env.REACT_APP_SERVER_IP}/file/${el.THUMBNAIL}`} />
+                            <div dangerouslySetInnerHTML={{__html: el.CONTENT_TEXT}}>
+                             </div>
                     </React.Fragment>
                        )})}
                 </div>
-                <div>
-                <ReactMarkdown 
-                  components={{img: InlineCodeBlock}}>    
-                    {metaText}
-                </ReactMarkdown>
-                </div>
+
             </section>
         </div>
 

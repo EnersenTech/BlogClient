@@ -10,9 +10,11 @@ import News from '../components/news/News'
 import Projects from '../components/projects/Projects'
 import Contact from '../components/contact/Contact'
 import NotFound from '../components/notFound/NotFound'
+import Upload from '../components/upload/Upload'
 
 // Blog Detail Pages
 import Project from '../components/projects/project/Project'
+
 
 
 function withLayout(page, title){
@@ -38,6 +40,12 @@ export default function Router() {
         name: 'news',
         exact: true, 
         element:  withLayout(<News/>, 'news'),
+    },
+    {
+        path:'/upload',
+        name: 'upload',
+        exact: true, 
+        element: withLayout(<Upload/>, 'upload')
     },
     {
         path:'/projects',
